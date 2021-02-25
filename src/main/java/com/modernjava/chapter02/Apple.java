@@ -12,6 +12,10 @@ public class Apple {
         this.color = color;
     }
 
+    public Apple(Integer weight) {
+        this.weight = weight;
+    }
+
     public String toString() {
         return String.format("Apple{color=%s, weight=%d}", color, weight);
     }
