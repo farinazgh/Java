@@ -1,9 +1,7 @@
 package com.modernjava.chapter04;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -11,8 +9,8 @@ public class Main {
     public static void main(String[] args) {
         getOrderedLowCalorieDishesNames();
         System.out.println(testStream());
-
         testStream2();
+        testDistinct();
     }
 
     private static void getOrderedLowCalorieDishesNames() {
@@ -51,5 +49,14 @@ public class Main {
                         .limit(3)
                         .collect(toList());
         System.out.println(threeOrderedHighCaloricDishNames);
+    }
+    private static void testDistinct() {
+        List<Integer> numbers = Arrays.asList(1, 2, 1, 3, 3, 2, 4);
+        System.out.println(numbers
+                .stream()
+                .filter((Integer a) -> (a % 2 == 0))
+                .distinct()
+                .collect(Collectors.toList()));
+        numbers.stream().filter((Integer a) -> (a % 2 == 0)).distinct().forEach(System.out::println);
     }
 }
