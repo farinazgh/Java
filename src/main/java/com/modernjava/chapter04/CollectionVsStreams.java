@@ -1,5 +1,7 @@
 package com.modernjava.chapter04;
 
+import com.modernjava.Dish;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
