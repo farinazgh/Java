@@ -4,7 +4,6 @@ import com.modernjava.Dish;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Main {
     static List<Dish> specialMenu = Arrays.asList(
@@ -108,24 +107,17 @@ public class Main {
         numbers1.stream().flatMap(i -> numbers2.stream().map(j -> new int[]{i, j})).forEach(System.out::println);
     }
 
+
     public static void main(String[] args) {
         filteringUniqueElements();
         testSlicing();
-        System.out.println("=====================");
         testTakeWhile();
-        System.out.println("=====================");
         testDropWhile();
-        System.out.println("=====================");
         testLimitSkip();
-        System.out.println("=====================");
         test();
-        System.out.println("=====================");
         testMap();
-        System.out.println("===================");
         testFlatMap();
-        System.out.println("===================");
         returnSquare();
-        System.out.println("===================");
         listOfPairs();
     }
 }
