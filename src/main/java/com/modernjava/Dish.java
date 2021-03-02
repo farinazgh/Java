@@ -35,7 +35,8 @@ public class Dish {
     public enum Type {
         MEAT,
         FISH,
-        VEGETARIAN
+        VEGETARIAN,
+        SOUP
     }
 
     public static final List<Dish> menu = asList(
