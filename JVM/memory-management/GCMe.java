@@ -15,28 +15,21 @@ public class GCMe {
         }
     }
 
-    public static long addressOf(Object obj) throws Exception {
+    public static long addressOf(Object obj) {
         Object[] array = new Object[]{obj};
 
         long baseOffset = unsafe.arrayBaseOffset(Object[].class);
         int addressSize = unsafe.addressSize();
-        long objectAddress;
-        switch (addressSize) {
-            case 4:
-                objectAddress = unsafe.getInt(array, baseOffset);
-                break;
-            case 8:
-                objectAddress = unsafe.getLong(array, baseOffset);
-                break;
-            default:
-                throw new Error("unsupported address size: " + addressSize);
-        }
 
-        return (objectAddress);
+        return (switch (addressSize) {
+            case 4 -> unsafe.getInt(array, baseOffset);
+            case 8 -> unsafe.getLong(array, baseOffset);
+            default -> throw new Error("unsupported address size: " + addressSize);
+        });
     }
 
 
-    public static void main(String... args) throws Exception {
+    public static void main(String... args) {
         for (int i = 0; i < 32000; i++) {
             Object largeObject = new LargeObj144bytes();
             long address = addressOf(largeObject);
