@@ -1,0 +1,10 @@
+it is the opposite of singleton pattern.
+it does not expose instantiation logic.
+the client has no knowledge of the object being created. not even its type.
+the client just knows the interface that the factory exposes.
+java examples: ResourceBundle; Calendar; NumberFormat
+in singleton you get just one single instance of the implemented class whereas in factory method you can have multiple instances
+e.g. Calendar
+---------------------------------------------------------------------------
+Factory is responsible for life cycle management
+typically a method to request an object is parameterized
