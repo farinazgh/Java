@@ -8,3 +8,8 @@ e.g. Calendar
 ---------------------------------------------------------------------------
 Factory is responsible for life cycle management
 typically a method to request an object is parameterized
+---------------------------------------------------------------------------
+complexity
+lots of coding
+the code is not in the factory itself but its subclasses
+it is not possible to refactor things to factory method. it should be considered from the beginning
