@@ -1,0 +1,12 @@
+--
+Asynchronous and concurrent are two different notions.
+We can be asynchronous without being concurrent, and being concurrent does not necessarily mean that we are asynchronous.
+A task can be asynchronous and still be called in the thread we are running in.
+Also we can be Asynchronous yet blocking like Runnable.
+
+--
+future.get() is a blocking call
+--
+we need the following:
+being able to trigger taskB upon completion of taskA
+being able to specify in which thread a task is executed
