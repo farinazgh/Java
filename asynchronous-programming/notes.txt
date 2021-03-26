@@ -1,0 +1,41 @@
+--
+Asynchronous and concurrent are two different notions.
+We can be asynchronous without being concurrent, and being concurrent does not necessarily mean that we are asynchronous.
+A task can be asynchronous and still be called in the thread we are running in.
+Also we can be Asynchronous yet blocking like Runnable.
+
+--
+future.get() is a blocking call
+--
+we need the following:
+being able to trigger taskB upon completion of taskA
+being able to specify in which thread a task is executed
+-------------------------------------------------------------------------
+Analyzing the Patterns an Asynchronous API Should Provide
+So the question is, is there a non-blocking way of chaining a task, which is lighting the green light. On the completion of another task,
+1.	First, we want to be able to trigger a task on the completion of another task.
+2.	Second, we want to be able to specify to control in which thread this second task is going to be executed.
+
+Understanding the Synchronous Nature of the Observer Pattern
+Could the solution come from the message driven or event driven approaches. One solution you may think could be to fire an event and create a listener for this event.
+Comparing Event Driven and Message Driven Systems
+•	events are not the right tool.
+•	In fact, a message is something that is sent to a broker and this broker will call the subscriber of the topic of the message most of the time in another thread, sometimes even in another Java virtual machine, so it is clearly neither the right way to update, for instance, a local interface.
+•	Messages are nice, but mostly to deal with different parts of our applications. So message event organization of applications do not provide any answer to our problem either.
+•	In a nutshell, we can say that an event is a signal whereas a message is a piece of data that recipients will get and react upon.
+•	A message can also carry an event to different parts of our application.
+
+From a technical point of view, a task has to be an object,  because in Java everything is modeled by an object, maybe apart from lambda expressions, lambdas are something very special, and we are going to see that the task maybe a lambda expression, but thinking of it as an object is not something completely wrong.
+•	First, a task has an implementation, which is basically what it is going to do, what it is going to execute. For instance, if it is a request on a database, it may incur some JDBC or some hibernate code,
+•	Second it is also wrapped in a technical object that will add meter information on this task.
+•	This wrapper carries information on the state of this task and you may think of this state as the following,
+1.	first, being still waiting for a thread to be available to execute it
+2.	or being currently running or completed.
+•	the first information this wrapper will carry the completion of this task as we are going to see it. And by the way, this wrapper is going to be the CompletableFuture object itself.
+Java gives two options to us to implement tasks:
+1.	Runnable: after java 8 it became a Functional Interface
+2.	Callable
+It is always possible to launch a task in the current thread.
+1.	In a runnable case, all you have to do is call the run method of your implementation,
+2.	in a callable interface, use the call method.
+3.	And the java. util. concurrent API brings more patterns to launch such tasks in another thread.
